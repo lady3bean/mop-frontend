@@ -10,7 +10,6 @@ import outkastPetition from '../../local/api/v1/petitions/outkast.json'
 describe('<Thanks />', () => {
   it('renders thanks for petition', () => {
     const context = mount(<Thanks petition={outkastPetition} />)
-    // console.log(context.html())
-    expect(context.find('h1').text()).to.equal('Thanks!')
+    expect(context.text()).to.contain('Thank')
   })
 })
