@@ -67,7 +67,7 @@ function petitionReducer(state = initialPetitionState, action) {
   if (typeof petitionWithoutSlug === 'object') {
     Object.assign(petition, petitionWithoutSlug, { slug })
   } else if (slug && typeof state.petitions[slug] !== 'undefined') {
-    petition = state.petitions[slug]
+    petition = { ...state.petitions[slug] }
   }
   switch (type) {
     case petitionActionTypes.FETCH_PETITION_SUCCESS:
