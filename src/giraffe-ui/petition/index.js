@@ -1,4 +1,5 @@
 export { Message } from './message'
+export { Share } from './share'
 export { Card } from './card'
 export { Details } from './details'
 export { InputBlock } from './input-block'
