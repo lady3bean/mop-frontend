@@ -15,7 +15,7 @@ import { text2paraJsx, splitIntoSpansJsx, ellipsize } from '../../lib'
 import SignatureAddForm from '../../containers/signature-add-form'
 import SignatureList from '../../containers/signature-list'
 
-const Petition = ({ petition: p, query, petitionBy, outOfDate }) => (
+const Petition = ({ petition: p, user, query, petitionBy, outOfDate }) => (
   <div className='mo-container'>
     <Message outOfDate={outOfDate} petition={p} isFwd={query.fwd} />
     <InfoColumn>
@@ -23,7 +23,7 @@ const Petition = ({ petition: p, query, petitionBy, outOfDate }) => (
         heading={splitIntoSpansJsx(p.title)}
         currentSignatures={p.total_signatures}
         goalSignatures={p.signature_goal}
-        renderShare={<Share className='petition-card' />}
+        renderShare={<Share className='petition-card' user={user} petition={p} />}
       >
         <p>To be delivered to {p.target.map(t => t.name).join(', ')}</p>
 
@@ -50,7 +50,7 @@ const Petition = ({ petition: p, query, petitionBy, outOfDate }) => (
           name={petitionBy}
           link={`/contact_creator.html?petition_id=${p.petition_id}`}
         />
-        <Share className='petition-details' hasLabels />
+        <Share className='petition-details' hasLabels user={user} petition={p} />
         <Details.Disclaimer />
       </Details>
     </InfoColumn>
@@ -62,6 +62,7 @@ const Petition = ({ petition: p, query, petitionBy, outOfDate }) => (
 
 Petition.propTypes = {
   petition: PropTypes.object.isRequired,
+  user: PropTypes.object,
   query: PropTypes.object,
   petitionBy: PropTypes.string,
   outOfDate: PropTypes.string

@@ -64,6 +64,7 @@ class SignPetition extends React.Component {
       <div className='moveon-petitions sign'>
         <Petition
           petition={this.props.petition}
+          user={this.props.user}
           query={this.props.location.query}
           petitionBy={petitionBy}
           outOfDate={outOfDate}
@@ -76,6 +77,7 @@ class SignPetition extends React.Component {
 
 SignPetition.propTypes = {
   petition: PropTypes.object,
+  user: PropTypes.object,
   params: PropTypes.object,
   location: PropTypes.object,
   dispatch: PropTypes.func
@@ -85,6 +87,7 @@ function mapStateToProps(store, ownProps) {
   const petition = store.petitionStore.petitions[ownProps.params.petition_slug]
   return {
     petition,
+    user: store.userStore,
     sign_success: petition && store.petitionStore.signatureStatus[petition.petition_id]
   }
 }
